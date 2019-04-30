@@ -4,8 +4,8 @@ Vue.component('tabs', {
         <div class="tabs-bar">\
             <!-- 标签页标题 -->\
             <div\
-                :class="tabCls(item)"\
                 v-for="(item, index) in navList"\
+                :class="tabCls(item)"\
                 @click="handleChange(index)">\
             {{item.label}}\
             </div>\
@@ -29,12 +29,14 @@ Vue.component('tabs', {
     },
     methods: {
         getTabs(){
+            //tabs组件上的标题应该由pane组件来定义，因为slot是卸载pane里的
+            //获取tabs子组件数组中name为pane的组件
             return this.$children.filter(function(item){
                 return item.$options.name === 'pane';
             });
         },
         updateNav(){
-            this.navList = [];
+            //this.navList = [];
             var _this = this;
             this.getTabs().forEach(function(pane, index){
                 _this.navList.push({
@@ -58,8 +60,10 @@ Vue.component('tabs', {
         },
         tabCls(item){
             return [
+                //基本样式
                 'tabs-tab',
                 {
+                    //选中变色
                     'tabs-tab-active': item.name === this.currentValue
                 }
             ]
@@ -68,8 +72,10 @@ Vue.component('tabs', {
             var nav = this.navList[index];
             var name = nav.name;
             this.currentValue = name;
-            this.$emit('input', name);
-            this.$emit('on-click', name);///////////////////////////////
+            //绑定父组件的v-model 把name传给activeKey
+            //this.$emit('input', name);
+            //绑定原生事件 点击
+            //this.$emit('on-click', name);
         }
     },
     watch: {
