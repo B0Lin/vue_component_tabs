@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component_tab</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div id="app" v-cloak>
+        <tabs v-model="activeKey">
+            <pane label="tab 1" name="1">
+                tab 1 content
+            </pane>
+            <pane label="tab 2" name="2">
+                tab 2 content
+            </pane>
+            <pane label="tab 3" name="3"> 
+                tab 3 content
+            </pane>
+        </tabs>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/pane.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
